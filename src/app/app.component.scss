@@ -8,12 +8,12 @@
     position: relative;
     top: 50px;
     left: 5%;
-}
 
-p {
-    margin: 0;
-    padding: 0;
-    line-height: 30px;
+    p {
+        margin: 0;
+        padding: 0;
+        line-height: 30px;
+    }
 }
 
 .logo-points {
@@ -26,4 +26,38 @@ p {
     font-size: 12px;
     display: block;
     text-align: right;
+}
+
+.select-players{
+    position: relative;
+    top: 45px;
+    margin: auto;
+
+    p {
+        color: #ffffff;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    input {
+        height: 30px;
+        width: 380px;
+        border: none;
+        border-radius: 2px;
+        margin-right: 5px;
+        font-size: 16px;
+        padding-left: 20px;
+        color: rgb(77, 77, 77);
+    }
+
+    button {
+        background-color: #ffd727;
+        border: none;
+        height: 32px;
+        width: 404px;
+        border-radius: 2px;
+        color: rgb(77, 77, 77);
+        font-size: 16px;
+    }
 }
