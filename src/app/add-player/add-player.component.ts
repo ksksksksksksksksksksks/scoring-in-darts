@@ -8,16 +8,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddPlayerComponent implements OnInit {
 
-  playerForm:FormGroup = new FormGroup({
-    "playerNickname": new FormControl("", [
-                      Validators.required,
-                      Validators.maxLength(20)
-    ]),
-    "playerEmail": new FormControl("", Validators.email)  
-  });
+  playerForm: FormGroup = new FormGroup({});
+    
+  constructor() {
+    this.playerForm = new FormGroup({
+      "playerNickname": new FormControl("", [
+                        Validators.required,
+                        Validators.maxLength(20)
+      ]),
+      "playerEmail": new FormControl("", Validators.email)  
+    });
+  }
 
-  
-  constructor() { }
+  submit() {
+    console.log(this.playerForm);
+  }
 
   ngOnInit(): void {
   }
