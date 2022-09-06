@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-player',
@@ -7,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPlayerComponent implements OnInit {
 
+  playerForm:FormGroup = new FormGroup({
+    "playerNickname": new FormControl("", [
+                      Validators.required,
+                      Validators.maxLength(20)
+    ]),
+    "playerEmail": new FormControl("", Validators.email)  
+  });
+
+  
   constructor() { }
 
   ngOnInit(): void {

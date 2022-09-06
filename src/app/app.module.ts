@@ -8,6 +8,8 @@ import { SelectGameComponent } from './select-game/select-game.component';
 import { AddPlayerComponent } from './add-player/add-player.component';
 import { GameComponent } from './game/game.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 const routes = [
   { path:'', component: SelectGameComponent},
   { path: 'add-player', component: AddPlayerComponent},
@@ -24,6 +26,7 @@ const routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
