@@ -10,6 +10,7 @@ import { PlayerService } from 'src/app/player.service';
 export class SelectGameComponent implements OnInit {
 
   items: {} = {};
+  itemsTable: [{name: string, email: string}] = this.playerService.player;
 
   constructor(private _router: Router, 
     private playerService: PlayerService) { }

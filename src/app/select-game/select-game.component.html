@@ -9,4 +9,7 @@
     <p>Select players</p>
     <input type="text" placeholder="Search">
     <button (click)="addPlayer()">New player</button>
+      <div *ngFor="let item of itemsTable"> 
+        {{item.name}} {{item.email}}
+      </div>  
 </div>

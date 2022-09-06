@@ -6,7 +6,7 @@ import { AddPlayerComponent } from './add-player/add-player.component';
 })
 export class PlayerService {
   
-  public player: [{}] = [{}];
+  public player: [{name: string, email: string}] = [{name: '', email: ''}];
 
   constructor() { }
       

@@ -28,7 +28,7 @@ export class AddPlayerComponent implements OnInit {
 
   addPlayer(name: string, email: string){     
     this.playerService.addPlayer(name, email);
-    console.log(this.playerService.player);
+    //console.log(this.playerService.player);
   }
 
   selectPlayer() {
