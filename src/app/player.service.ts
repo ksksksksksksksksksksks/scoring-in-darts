@@ -6,21 +6,16 @@ import { AddPlayerComponent } from './add-player/add-player.component';
 })
 export class PlayerService {
   
-  public playerNickname: string[] = [];
-  public playerEmail: string[] = [];
+  public player: [{}] = [{}];
 
   constructor() { }
       
-  getPlayer(): string[] {    
-    return this.playerNickname;
+  getPlayer(): {} {    
+    return this.player;
   }
 
-  addPlayerNickname(nickname: string) {
-    this.playerNickname.push(nickname);
-  }
-
-  addPlayerEmail(email: string) {
-    this.playerEmail.push(email);
+  addPlayer(name: string, email: string) {
+    this.player.push({name, email});
   }
 
 }

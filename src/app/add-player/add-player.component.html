@@ -20,6 +20,6 @@
             *ngIf="playerForm.controls['playerEmail'].invalid && playerForm.controls['playerEmail'].touched">
             Invalid e-mail
         </div>
-        <button [disabled]="playerForm.invalid" (click)="addPlayerNickname(nickname); addPlayerEmail(email);">Add</button>
+        <button [disabled]="playerForm.invalid" (click)="addPlayer(nickname, email); selectPlayer()">Add</button>
     </div>
 </div>

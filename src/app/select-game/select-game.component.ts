@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlayerService } from 'src/app/player.service';
 
 @Component({
   selector: 'app-select-game',
@@ -8,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class SelectGameComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  items: {} = {};
+
+  constructor(private _router: Router, 
+    private playerService: PlayerService) { }
 
   ngOnInit(): void {
+    this.items = this.playerService.getPlayer();
+    console.log(this.playerService.player);
   }
 
   addPlayer() {
