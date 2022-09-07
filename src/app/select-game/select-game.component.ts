@@ -10,25 +10,25 @@ import { Player } from '../domain/player';
 })
 export class SelectGameComponent implements OnInit {
 
-  items: Player = {name: ''};
-  itemsTable: Player[] = this.playerService.players;
+  player: Player = {name: ''};
+  players: Player[] = this.playerService.players;
 
-  constructor(private _router: Router, 
+  constructor(private router: Router, 
     private playerService: PlayerService) {
-    }
+  }
 
   ngOnInit(): void {
-    this.itemsTable = this.playerService.getPlayer();
+    this.players = this.playerService.getPlayer();
   }
 
   addPlayer() {
-    this._router.navigateByUrl('add-player');
+    this.router.navigateByUrl('add-player');
   }
 
   removePlayer(player: Player){
     this.playerService.removePlayer(player);
     console.log(this.playerService.players);
+    console.log(this.players);
   }
   
-
 }

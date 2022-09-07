@@ -21,8 +21,8 @@ export class PlayerService {
   }
 
   removePlayer(element: Player) {
-    this.players.forEach((value, index)=>{
-      if(value == element) this.players.splice(index, 1);
+    this.players.forEach( (value, index) => {
+      if (value == element) this.players.splice(index, 1);
     });
   }
 
