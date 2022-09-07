@@ -10,7 +10,7 @@ import { PlayerService } from 'src/app/player.service';
 export class SelectGameComponent implements OnInit {
 
   items: {} = {};
-  itemsTable: [{name: string, email: string}] = this.playerService.player;
+  itemsTable: [{name: string, email: string, isRemoved?: boolean}] = this.playerService.player;
 
   constructor(private _router: Router, 
     private playerService: PlayerService) { }
@@ -22,6 +22,14 @@ export class SelectGameComponent implements OnInit {
 
   addPlayer() {
     this._router.navigateByUrl('add-player');
+  }
+
+  removePlayer(name: string, email: string){
+    for (let i = 0; i < this.itemsTable.length; i++){
+      if (this.itemsTable[i].name == name && this.itemsTable[i].email == email){
+        this.itemsTable[i].isRemoved = true;
+      }
+    }
   }
 
 }

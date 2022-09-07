@@ -63,14 +63,35 @@
         font-size: 16px;
     }
 
-    div{
+    div {
         width: 811px;
-        height: 30px;
+        height: 40px;
         margin: auto;
         text-align: left;
         color: rgb(77, 77, 77);
         background-color: white;
         margin-bottom: 2px;
+        opacity: 1;
+        transition: opacity 0.6s;
     }
+
+    .closeBtn {
+        margin-right: 15px;
+        color: #2747ff;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 38px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .closeBtn:hover {
+        color: black;
+      }
     
+    .removed{
+        opacity: 0;
+        display: none;
+    }
 }
