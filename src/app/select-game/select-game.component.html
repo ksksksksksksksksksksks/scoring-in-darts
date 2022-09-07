@@ -9,10 +9,10 @@
     <p>Select players</p>
     <input type="text" placeholder="Search">
     <button (click)="addPlayer()">New player</button>
-      <tr *ngFor="let item of itemsTable" [class.removed]="item.isRemoved">
+      <tr *ngFor="let item of itemsTable">
         <td>{{item.name}}</td> 
         <td>{{item.email}}
-          <span class="closeBtn" (click)="removePlayer(item.name, item.email)">&times;</span> 
+          <span class="closeBtn" (click)="removePlayer(item)">&times;</span> 
         </td> 
       </tr >  
 </div>

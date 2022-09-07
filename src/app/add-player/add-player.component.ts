@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlayerService } from 'src/app/player.service';
+import { Player } from '../domain/player';
 
 @Component({
   selector: 'app-add-player',
@@ -11,28 +12,22 @@ import { PlayerService } from 'src/app/player.service';
 })
 export class AddPlayerComponent implements OnInit {
 
-  playerForm: FormGroup = new FormGroup({});
-  nickname: string = '';
-  email: string = ''; 
+  form: FormGroup;
     
-  constructor(private _router: Router,
+  constructor(private router: Router,
     private playerService: PlayerService) {
-    this.playerForm = new FormGroup({
-      "playerNickname": new FormControl('', [
+    this.form = new FormGroup({
+      name: new FormControl('', [
         Validators.required,
         Validators.maxLength(20)
       ]),
-      "playerEmail": new FormControl('', Validators.email)  
+      email: new FormControl('', Validators.email)  
     });
   }
 
-  addPlayer(name: string, email: string){     
-    this.playerService.addPlayer(name, email);
-    //console.log(this.playerService.player);
-  }
-
-  selectPlayer() {
-    this._router.navigateByUrl('');
+  addPlayer(){     
+    this.playerService.addPlayer(this.form.value);
+    this.router.navigateByUrl('');
   }
 
   ngOnInit(): void {

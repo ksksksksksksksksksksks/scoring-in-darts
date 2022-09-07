@@ -7,19 +7,19 @@
 
 <div class="add-player">
     <p>Add a new player to start the game</p> 
-    <div class="form" [formGroup]="playerForm" novalidate>
+    <div class="form" [formGroup]="form" novalidate>
         <label>Nickname</label>
-        <input type="text" [(ngModel)]="nickname" formControlName="playerNickname" />
+        <input type="text" formControlName="name" />
         <div class="alert-danger"
-            *ngIf="playerForm.controls['playerNickname'].invalid && playerForm.controls['playerNickname'].touched">
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
             No nickname specified
         </div>
         <label>e-mail</label>
-        <input type="text" [(ngModel)]="email" formControlName="playerEmail" />
+        <input type="text" formControlName="email" />
         <div class="alert-danger"
-            *ngIf="playerForm.controls['playerEmail'].invalid && playerForm.controls['playerEmail'].touched">
+            *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
             Invalid e-mail
         </div>
-        <button [disabled]="playerForm.invalid" (click)="addPlayer(nickname, email); selectPlayer()">Add</button>
+        <button [disabled]="form.invalid" (click)="addPlayer()">Add</button>
     </div>
 </div>
