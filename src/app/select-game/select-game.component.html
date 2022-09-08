@@ -9,6 +9,7 @@
     <p>Select players</p>
     <input type="text" placeholder="Search">
     <button (click)="addPlayer()">New player</button>
+    <button (click)="searchPlayer('asa')">Search</button>
       <tr *ngFor="let player of players">
         <td>{{player.name}}</td> 
         <td>{{player.email}}

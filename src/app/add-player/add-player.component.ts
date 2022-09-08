@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlayerService } from 'src/app/player.service';
+import { UserService } from 'src/app/user.service';
 import { Player } from '../domain/player';
 
 @Component({
@@ -15,7 +16,8 @@ export class AddPlayerComponent implements OnInit {
   form: FormGroup;
     
   constructor(private router: Router,
-    private playerService: PlayerService) {
+    private playerService: PlayerService,
+    private userService: UserService) {
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -27,6 +29,7 @@ export class AddPlayerComponent implements OnInit {
 
   addPlayer(){     
     this.playerService.addPlayer(this.form.value);
+    this.userService.addUser(this.form.value);
     this.router.navigateByUrl('');
   }
 

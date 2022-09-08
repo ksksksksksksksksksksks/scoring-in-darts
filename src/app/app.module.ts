@@ -12,6 +12,7 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { PlayerService } from './player.service';
+import { UserService } from './user.service'
 import { HttpClientModule } from '@angular/common/http';
 
 const routes = [
@@ -35,7 +36,10 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [PlayerService],
+  providers: [
+    PlayerService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

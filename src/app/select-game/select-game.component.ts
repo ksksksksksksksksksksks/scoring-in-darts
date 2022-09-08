@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
+import { UserService } from 'src/app/user.service';
 import { Player } from '../domain/player';
 
 @Component({
@@ -14,7 +15,8 @@ export class SelectGameComponent implements OnInit {
   players: Player[] = this.playerService.players;
 
   constructor(private router: Router, 
-    private playerService: PlayerService) {
+    private playerService: PlayerService,
+    private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +31,10 @@ export class SelectGameComponent implements OnInit {
     this.playerService.removePlayer(player);
     console.log(this.playerService.players);
     console.log(this.players);
+  }
+
+  searchPlayer(str: string){
+    this.userService.searchUser(str);
   }
   
 }
