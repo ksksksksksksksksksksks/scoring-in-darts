@@ -12,8 +12,8 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { PlayerService } from './player.service';
-import { UserService } from './user.service'
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPipe } from './search.pipe';
 
 const routes = [
   { path:'', component: SelectGameComponent},
@@ -26,7 +26,8 @@ const routes = [
     AppComponent,
     SelectGameComponent,
     AddPlayerComponent,
-    GameComponent
+    GameComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -36,10 +37,7 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [
-    PlayerService,
-    UserService
-  ],
+  providers: [PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

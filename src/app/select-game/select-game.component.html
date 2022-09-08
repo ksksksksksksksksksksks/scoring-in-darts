@@ -4,16 +4,23 @@
       <span class="logo-edition">© SoftClub edition</span>
     </p> 
 </div>
-  
+
 <div class="select-players">
     <p>Select players</p>
-    <input type="text" placeholder="Search">
+    <input type="text" name="strInput" [(ngModel)]="strInput" placeholder="Search" list="players">
+    <datalist id="players">
+      <option *ngFor="let player of players | search: strInput" [value]="player.name" [ngValue]="player">
+        {{player.name}}
+      </option>
+    </datalist>
     <button (click)="addPlayer()">New player</button>
-    <button (click)="searchPlayer('asa')">Search</button>
       <tr *ngFor="let player of players">
-        <td>{{player.name}}</td> 
-        <td>{{player.email}}
+        <td>
+          {{player.name}}
+        </td> 
+        <td>
+          {{player.email}}
           <span class="closeBtn" (click)="removePlayer(player)">&times;</span> 
         </td> 
-      </tr >  
+      </tr>  
 </div>
