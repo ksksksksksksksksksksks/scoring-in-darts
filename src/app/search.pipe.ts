@@ -8,7 +8,7 @@ import { Player } from './domain/player';
 export class SearchPipe implements PipeTransform {
     transform(players: Player[], strInput: string): Player[] {     
         if (!strInput) {
-            return [];
+            return players;
         }
 
         strInput = strInput.toLowerCase();
