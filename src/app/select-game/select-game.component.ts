@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
+import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
 
 
@@ -16,7 +17,8 @@ export class SelectGameComponent implements OnInit {
   strInput: string = '';
 
   constructor(private router: Router, 
-    private playerService: PlayerService) {
+    private playerService: PlayerService,
+    private gameService: GameService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class SelectGameComponent implements OnInit {
 
   removePlayer(player: Player){
     this.playerService.removePlayer(player);
+  }
+
+  chooseGame(typeGame: string){
+    this.gameService.typeGame = typeGame;
+    console.log(this.gameService.typeGame);
   }
   
 }

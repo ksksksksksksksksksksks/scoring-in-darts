@@ -12,11 +12,12 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { PlayerService } from './player.service';
+import { GameService } from './game.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
 
 const routes = [
-  { path:'', component: SelectGameComponent},
+  { path: '', component: SelectGameComponent},
   { path: 'add-player', component: AddPlayerComponent},
   { path: 'game', component: GameComponent }
 ]
@@ -37,7 +38,10 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [PlayerService],
+  providers: [
+    PlayerService,
+    GameService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
