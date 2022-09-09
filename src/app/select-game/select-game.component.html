@@ -7,7 +7,7 @@
 
 <div class="select-players">
     <p>Select players</p>
-    <input type="search" name="strInput" [(ngModel)]="strInput" placeholder="Search" list="players">
+    <input type="search" name="strInput" [(ngModel)]="strInput" placeholder="Search">
     <button (click)="addPlayer()">New player</button>
       <tr *ngFor="let player of players | search: strInput">
         <td>
