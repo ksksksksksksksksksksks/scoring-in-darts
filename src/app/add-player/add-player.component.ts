@@ -16,13 +16,13 @@ export class AddPlayerComponent implements OnInit {
     
   constructor(private router: Router,
     private playerService: PlayerService) {
-    this.form = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(20)
-      ]),
-      email: new FormControl('', Validators.email)  
-    });
+      this.form = new FormGroup({
+        name: new FormControl('', [
+          Validators.required,
+          Validators.maxLength(20)
+        ]),
+        email: new FormControl('', Validators.email)  
+      });
   }
 
   addPlayer(){     

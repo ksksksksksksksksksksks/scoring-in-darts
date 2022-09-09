@@ -9,10 +9,33 @@
 </div>
 
 <div class="game-progress">
+
+    <!--FormArray-->
+    <div *ngFor="let card of cards.controls;">
+        <!--FormGroup-->
+        <ng-container [formGroup]="cardGroup">
+            <p formControlName="name"></p>
+            <!--FormArray-->
+            <ng-container formArrayName="card">
+                <div *ngFor="let point of points.controls;"> 
+                    <!--FormGroup-->
+                    <ng-container [formGroup]="pointGroup">
+                        <input formControlName="point" />
+                        <input formControlName="circle" />
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    
+</div>
+
+<!--    <div *ngFor="let control of cards.controls; index as i">
+        <input [formControl]="cards.controls[i]" />
+      </div>
     <tr *ngFor="let player of players">
         <td>
           {{player.name}}
         </td> 
-      </tr>  
-</div>
-
+      </tr>
+--> 
