@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlayerService } from 'src/app/player.service';
+import { GameService } from 'src/app/game.service';
+import { Player } from '../domain/player';
 
 @Component({
   selector: 'app-game',
@@ -7,8 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  
+  player: Player = {name: ''};
+  players: Player[] = this.playerService.players;
+  strInput: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private playerService: PlayerService,
+    private gameService: GameService) {
+  }
 
   ngOnInit(): void {
   }
