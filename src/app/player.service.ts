@@ -8,7 +8,12 @@ import { Player } from './domain/player';
 })
 export class PlayerService {
   
-  players: Player[] = [];
+  players: Player[] = [
+    {name: 'Jack', email: 'jack@gmail.com'},
+    {name: 'Harry', email: 'harry@gmail.com'},
+    {name: 'Thomas', email: 'thomas@gmail.com'},
+    {name: 'Charley'}
+  ];
 
   constructor() { }
       

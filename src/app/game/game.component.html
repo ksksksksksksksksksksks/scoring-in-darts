@@ -11,22 +11,24 @@
 <div class="game-progress">
 
     <!--FormArray-->
-    <div *ngFor="let card of cards.controls;">
+    <div *ngFor="let card of cards.controls; let i = index">
         <!--FormGroup-->
-        <ng-container [formGroup]="cardGroup">
-            <p formControlName="name"></p>
-            <!--FormArray-->
-            <ng-container formArrayName="card">
-                <div *ngFor="let point of points.controls;"> 
-                    <!--FormGroup-->
-                    <ng-container [formGroup]="pointGroup">
-                        <input formControlName="point" />
-                        <input formControlName="circle" />
-                    </ng-container>
-                </div>
+        <form [formGroup]="cardGroup">
+            <ng-container [formGroupName]="i">
+                <p formControlName="name"></p>
+                <!--FormArray-->
+                <ng-container formArrayName="points">
+                    <div *ngFor="let _ of points.controls">
+                        <!--FormGroup-->
+                        <ng-container>
+                            <input formControlName="point" />
+                            <input formControlName="circle" />
+                        </ng-container>
+                    </div>
+                </ng-container>
             </ng-container>
-        </ng-container>
-    </div>
+        </form>
+     </div>
     
 </div>
 

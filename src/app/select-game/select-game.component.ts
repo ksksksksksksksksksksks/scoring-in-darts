@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
+import { GameComponent } from '../game/game.component';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Player } from '../domain/player';
   styleUrls: ['./select-game.component.scss']
 })
 export class SelectGameComponent implements OnInit {
+  //@ViewChild(GameComponent) child!: GameComponent;
 
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
@@ -35,7 +37,11 @@ export class SelectGameComponent implements OnInit {
 
   chooseGame(typeGame: string){
     this.gameService.typeGame = typeGame;
-    console.log(this.gameService.typeGame);
+    //console.log(this.gameService.typeGame);
+  }
+
+  start() {
+    this.router.navigateByUrl('game');
   }
   
 }

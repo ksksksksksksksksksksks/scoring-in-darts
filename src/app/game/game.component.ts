@@ -14,47 +14,81 @@ export class GameComponent implements OnInit {
 
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
+  
+  //pointGroup: FormGroup;
+  cardGroup: FormGroup = new FormGroup({});
 
   cards = new FormArray([]);
   points = new FormArray([]);
-
-  pointGroup: FormGroup;
-  cardGroup: FormGroup;
-
-  constructor(private router: Router,
-    private playerService: PlayerService,
-    private gameService: GameService) {
-      this.pointGroup = new FormGroup({
+  
+  /*cardGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    points: new FormArray([
+      new FormGroup({
         point: new FormControl(1, [
           Validators.required,
           Validators.min(1),
           Validators.max(60)
         ]),
-        circle: new FormControl(1, Validators.required)  
+        circle: new FormControl(1, Validators.required)
+      })
+    ])
+  });*/
+
+  constructor(private router: Router,
+    private playerService: PlayerService,
+    private gameService: GameService) {
+      this.players.forEach(el => {
+        const name = el.name;
+        this.points = <never>new FormArray([
+          new FormGroup({
+            point: new FormControl(1, [
+              Validators.required,
+              Validators.min(1),
+              Validators.max(60)
+            ]),
+            circle: new FormControl(1, Validators.required)
+          })
+        ]);
+        this.cardGroup = new FormGroup({
+          name: new FormControl(name),
+          points: this.points
+        });
+        this.cards.push(<never>this.cardGroup);
       });
-      this.cardGroup = new FormGroup({
-        name: new FormControl('', Validators.required),
-        card: this.points
-      });
+      console.log(this.cards);
   }
 
   selectGame() {
     this.router.navigateByUrl('');
   }
 
-  addPointGroup() {
-    this.points.push(<never>this.pointGroup);
-  }
-
-  addCardGroup() {
+  /*addCard() {
     this.cards.push(<never>this.cardGroup);
-  }
+  }*/
 
-  get card() {
-    return this.cardGroup.get('card') as FormArray;
-  }
+  /*get points() {
+    return this.cardGroup.get('points') as FormArray;
+  }*/
   
   ngOnInit(): void {
+    console.log(this.playerService.players);
   }
 
 }
+
+  /*addPoint() {
+    (<FormArray>this.cardGroup.get('points')).push(<never>this.pointGroup);
+  }
+  */
+
+   /*for(let i = 0; i < 3; i++) {
+    this.points.push(new FormGroup({
+      point: new FormControl(1, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(60)
+      ]),
+      circle: new FormControl(1, Validators.required)
+      }));
+  }*/
