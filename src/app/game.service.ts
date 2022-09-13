@@ -11,8 +11,10 @@ export class GameService {
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
 
-  constructor(private playerService: PlayerService) { }
-
-
+  constructor(private playerService: PlayerService) {
+    for (let i = 0; i < this.players.length; i++){
+      this.players[i].pointMove = [];
+    }  
+  }
 
 }

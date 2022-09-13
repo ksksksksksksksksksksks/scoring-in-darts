@@ -38,15 +38,14 @@
             </div>
         </form>
      </div>
-     
+    <button (click)="countPointMove()">Add</button> 
 </div>
 
-<!--    <div *ngFor="let control of cards.controls; index as i">
-        <input [formControl]="cards.controls[i]" />
-      </div>
-    <tr *ngFor="let player of players">
-        <td>
-          {{player.name}}
-        </td> 
-      </tr>
---> 
+<table>
+    <tr>
+        <td *ngFor="let player of players">
+            {{player.point}}
+        </td>
+    </tr>
+</table>
+

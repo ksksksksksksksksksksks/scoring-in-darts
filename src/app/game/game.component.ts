@@ -51,6 +51,28 @@ export class GameComponent implements OnInit {
     });
   }
 
+  countPointMove() {
+    for (let i = 0; i < this.cards.length; i++) {
+      let pointMove: number = 0;
+      for (let j = 0; j < this.cards.controls[i].controls.points.length; j++){
+        pointMove += this.cards.controls[i].controls.points.controls[j].value.point * this.cards.controls[i].controls.points.controls[j].value.circle;
+      }
+      this.gameService.players[i].pointMove?.push(pointMove);
+      this.countPoint(i);
+      console.log(this.gameService.players[i]);
+    }
+  }
+
+  countPoint(i: number) {
+      let pointMoveLen: number = this.gameService.players[i].pointMove?.length as number;
+      let pointMove: number[] = this.gameService.players[i].pointMove as number[];
+      let pointSum: number = 0;
+      for (let j = 0; j < pointMoveLen; j++){
+        pointSum += pointMove[j];
+      }
+      this.gameService.players[i].point = pointSum;
+  }
+
   selectGame() {
     this.router.navigateByUrl('');
   }
