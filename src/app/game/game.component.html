@@ -11,25 +11,34 @@
 <div class="game-progress">
 
     <!--FormArray-->
-    <div *ngFor="let card of cards.controls; let i = index">
+    <div class=card *ngFor="let card of cards.controls">    
         <!--FormGroup-->
-        <form [formGroup]="cardGroup">
-            <ng-container [formGroupName]="i">
-                <p formControlName="name"></p>
-                <!--FormArray-->
-                <ng-container formArrayName="points">
-                    <div *ngFor="let _ of points.controls">
-                        <!--FormGroup-->
-                        <ng-container>
-                            <input formControlName="point" />
-                            <input formControlName="circle" />
-                        </ng-container>
-                    </div>
-                </ng-container>
-            </ng-container>
+        <form [formGroup]="card">
+            <input class="name" formControlName="name" readonly />
+            <!--FormArray-->
+            <div formArrayName="points">
+                <div *ngFor="let _ of card.controls.points.controls; let i = index">
+                    <!--FormGroup-->
+                    <ng-container [formGroupName]="i">
+                        <input class="point" formControlName="point" />
+                            <label class="check">
+                                <input type="radio" value="1" formControlName="circle">
+                                1
+                            </label>
+                            <label class="check">
+                                <input type="radio" value="2" formControlName="circle">
+                                2
+                            </label>
+                            <label class="check">
+                                <input type="radio" value="3" formControlName="circle">
+                                3
+                            </label>
+                    </ng-container>
+                </div>
+            </div>
         </form>
      </div>
-    
+     
 </div>
 
 <!--    <div *ngFor="let control of cards.controls; index as i">

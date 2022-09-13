@@ -50,4 +50,20 @@
 .game-progress {
     min-height: 100px;
     border-bottom: 1px solid #31bcff;
+    padding: 5px;
+
+    .card{
+        display: inline-block;
+        margin-left: 1%;
+
+        .name{
+            background-color: #039be6;
+            border: none;
+            color: #ffffff;
+        }
+
+        .point{
+            width: 25%;
+        }
+    }
 }
