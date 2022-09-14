@@ -9,7 +9,6 @@
 </div>
 
 <div class="game-progress">
-
     <!--FormArray-->
     <div class=card *ngFor="let card of cards.controls">    
         <!--FormGroup-->
@@ -21,31 +20,42 @@
                     <!--FormGroup-->
                     <ng-container [formGroupName]="i">
                         <input class="point" formControlName="point" />
-                            <label class="check">
-                                <input type="radio" value="1" formControlName="circle">
-                                1
-                            </label>
-                            <label class="check">
-                                <input type="radio" value="2" formControlName="circle">
-                                2
-                            </label>
-                            <label class="check">
-                                <input type="radio" value="3" formControlName="circle">
-                                3
-                            </label>
+                        <label class="check">
+                            <input type="radio" value="1" formControlName="circle" />
+                            1
+                        </label>
+                        <label class="check">
+                            <input type="radio" value="2" formControlName="circle" />
+                            2
+                        </label>
+                        <label class="check">
+                            <input type="radio" value="3" formControlName="circle" />
+                            3
+                        </label>
                     </ng-container>
                 </div>
             </div>
         </form>
-     </div>
-    <button (click)="countPointMove()">Add</button> 
+    </div>
+    <button (click)="countPoint()">Add</button> 
 </div>
 
 <table>
-    <tr>
+    <th *ngFor="let player of players">
+        {{player.name}}
+    </th>
+    <!-- <tr *ngFor="let point of massPoint; index as i"> -->
+    <!-- <tr *ngFor="let point of points"> -->
+        <!-- <td *ngFor="let player of players">
+            {{player.pointMove?.[i]}}
+        </td>
+    </tr> -->
+
+    <tr *ngFor="let step of steps">
         <td *ngFor="let player of players">
-            {{player.point}}
+            {{step[player.name]}}
         </td>
     </tr>
+    <!-- </tr> -->
 </table>
 

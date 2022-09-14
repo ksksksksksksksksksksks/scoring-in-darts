@@ -7,7 +7,7 @@
 
 <div class="select-players">
     <p>Select players</p>
-    <input type="search" name="strInput" [(ngModel)]="strInput" placeholder="Search">
+    <input type="search" name="strInput" [(ngModel)]="strInput" placeholder="Search" />
     <button (click)="addPlayer()">New player</button>
       <tr *ngFor="let player of players | search: strInput">
         <td>
@@ -22,10 +22,10 @@
 
 <div class="choose-game">
   <p>Choose game</p>
-    <div class="game-501" (click)="chooseGame('501')" [class.choose-game-before]="">
+    <div class="game-501" (click)="chooseGame('501');" [class.choose-game-before]="gameType === '501'">
         501
     </div>
-    <div class="game-301" (click)="chooseGame('301')" [class.choose-game-before]="">
+    <div class="game-301" (click)="chooseGame('301');" [class.choose-game-before]="gameType === '301'">
       301
   </div>
 </div>

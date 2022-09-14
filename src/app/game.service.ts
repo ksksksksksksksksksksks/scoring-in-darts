@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Player } from './domain/player';
 import { PlayerService } from 'src/app/player.service';
+type GameType = "501" | "301";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
 
-  typeGame: string = '';
+  @Input() public gameType!: GameType;
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
 

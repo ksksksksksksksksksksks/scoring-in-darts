@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
 import { GameComponent } from '../game/game.component';
+
+type GameType = "501" | "301";
 
 
 @Component({
@@ -13,7 +15,7 @@ import { GameComponent } from '../game/game.component';
 })
 export class SelectGameComponent implements OnInit {
   //@ViewChild(GameComponent) child!: GameComponent;
-
+  @Input() public gameType!: GameType;
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
   strInput: string = '';
@@ -35,13 +37,20 @@ export class SelectGameComponent implements OnInit {
     this.playerService.removePlayer(player);
   }
 
-  chooseGame(typeGame: string){
-    this.gameService.typeGame = typeGame;
-    //console.log(this.gameService.typeGame);
+  chooseGame(typeGame: GameType){
+    this.gameType = typeGame;
+    this.gameService.gameType = typeGame;
+
+    console.log(this.gameService.gameType);
   }
 
   start() {
     this.router.navigateByUrl('game');
+    for (let i = 0; i < this.players.length; i++){
+      this.players[i].pointMove = [];
+      this.players[i].point = 0;
+    }  
   }
   
 }
+
