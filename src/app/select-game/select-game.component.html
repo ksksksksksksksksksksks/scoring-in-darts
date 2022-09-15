@@ -10,7 +10,7 @@
     <input type="search" name="strInput" [(ngModel)]="strInput" placeholder="Search" />
     <button (click)="addPlayer()">New player</button>
       <tr *ngFor="let player of players | search: strInput">
-        <td>
+        <td class="name">
           {{player.name}}
         </td> 
         <td>
@@ -31,10 +31,10 @@
 </div>
 
 <div class="start">
-  <button (click)="start()" [disabled]="!gameType" [class.active]="gameType">Start</button>
+  <button (click)="start()" [disabled]="!gameType || this.playerService.players.length < 2 " 
+    [class.active]="gameType && this.playerService.players.length >= 2">
+    Start
+  </button>
 </div>
-  
-
-<!--[disabled]=""-->
   
 

@@ -25,7 +25,7 @@ export class SelectGameComponent implements OnInit {
   strInput: string = '';
 
   constructor(private router: Router, 
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private gameService: GameService) {
   }
 
