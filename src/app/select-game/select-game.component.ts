@@ -14,7 +14,11 @@ type GameType = "501" | "301";
   styleUrls: ['./select-game.component.scss']
 })
 export class SelectGameComponent implements OnInit {
-  //@ViewChild(GameComponent) child!: GameComponent;
+
+  ngOnInit(): void {
+    this.players = this.playerService.getPlayer();
+  }
+
   @Input() public gameType!: GameType;
   player: Player = {name: ''};
   players: Player[] = this.playerService.players;
@@ -23,10 +27,6 @@ export class SelectGameComponent implements OnInit {
   constructor(private router: Router, 
     private playerService: PlayerService,
     private gameService: GameService) {
-  }
-
-  ngOnInit(): void {
-    this.players = this.playerService.getPlayer();
   }
 
   addPlayer() {
@@ -48,7 +48,6 @@ export class SelectGameComponent implements OnInit {
     this.router.navigateByUrl('game');
     for (let i = 0; i < this.players.length; i++){
       this.players[i].pointMove = [];
-      this.players[i].point = 0;
     }  
   }
   

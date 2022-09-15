@@ -19,11 +19,9 @@
                 <div *ngFor="let _ of card.controls.points.controls; let i = index">
                     <!--FormGroup-->
                     <ng-container [formGroupName]="i">
-                        <input class="point" formControlName="point" [class.invalid]="card.controls.points.controls[i].invalid && card.controls.points.controls[i].touched" />
-                        <div class="alert-danger"
-                            *ngIf="card.controls.points.controls[i].invalid && card.controls.points.controls[i].touched">
-                            Invalid value
-                        </div>
+                        <input class="point" formControlName="point" 
+                            [class.invalid]="card.controls.points.controls[i].invalid && 
+                            card.controls.points.controls[i].touched" />
                         <label class="check">
                             <input type="radio" value="1" formControlName="circle" />
                             1
@@ -41,25 +39,19 @@
             </div>
         </form>
     </div>
-    <button (click)="countPoint()">Add</button> 
+    <button [disabled]="cards.invalid" (click)="countPoint(gameType)" [class.active]="!cards.invalid">
+        Add
+    </button> 
 </div>
 
 <table>
     <th *ngFor="let player of players">
         {{player.name}}
     </th>
-    <!-- <tr *ngFor="let point of massPoint; index as i"> -->
-    <!-- <tr *ngFor="let point of points"> -->
-        <!-- <td *ngFor="let player of players">
-            {{player.pointMove?.[i]}}
-        </td>
-    </tr> -->
-
     <tr *ngFor="let step of steps">
         <td *ngFor="let player of players">
             {{step[player.name]}}
         </td>
     </tr>
-    <!-- </tr> -->
 </table>
 

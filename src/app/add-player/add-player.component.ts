@@ -12,6 +12,9 @@ import { Player } from '../domain/player';
 })
 export class AddPlayerComponent implements OnInit {
 
+  ngOnInit(): void {
+  }
+
   form: FormGroup;
     
   constructor(private router: Router,
@@ -28,9 +31,6 @@ export class AddPlayerComponent implements OnInit {
   addPlayer(){     
     this.playerService.addPlayer(this.form.value);
     this.router.navigateByUrl('');
-  }
-
-  ngOnInit(): void {
   }
 
 }

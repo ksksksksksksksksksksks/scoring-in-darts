@@ -15,6 +15,7 @@ import { PlayerService } from './player.service';
 import { GameService } from './game.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes = [
   { path: '', component: SelectGameComponent},
@@ -36,7 +37,8 @@ const routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [
     PlayerService,
