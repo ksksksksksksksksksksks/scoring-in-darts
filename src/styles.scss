@@ -1,3 +1,15 @@
 body {
     background-color: #039be6;
 }
+
+mat-dialog-container#show-result {
+    border: 3px solid #042036;
+    border-radius: 11px;
+    background-color: #09497e;
+    color: aliceblue;
+    position: absolute;
+    width: 25%;
+    height: 40%;
+    left: 37%;
+    top: 33%;
+}

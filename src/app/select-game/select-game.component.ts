@@ -41,7 +41,7 @@ export class SelectGameComponent implements OnInit {
     this.gameType = typeGame;
     this.gameService.gameType = typeGame;
 
-    console.log(this.gameService.gameType);
+    //console.log(this.gameService.gameType);
   }
 
   start() {

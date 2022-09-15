@@ -16,6 +16,8 @@ import { GameService } from './game.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GameResultComponent } from './game-result/game-result.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes = [
   { path: '', component: SelectGameComponent},
@@ -29,7 +31,8 @@ const routes = [
     SelectGameComponent,
     AddPlayerComponent,
     GameComponent,
-    SearchPipe
+    SearchPipe,
+    GameResultComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ const routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     PlayerService,

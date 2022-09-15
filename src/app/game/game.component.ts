@@ -6,6 +6,7 @@ import { Player } from '../domain/player';
 import { FormGroup, FormControl, Validators, FormArray, AbstractControl} from '@angular/forms';
 import { VirtualTimeScheduler } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { GameResultComponent } from '../game-result/game-result.component'
 
 type GameType = "501" | "301";
 
@@ -26,10 +27,12 @@ export class GameComponent implements OnInit {
   players: Player[] = this.playerService.players;
   cards = new FormArray<FormGroup<{name: AbstractControl<string>; points: FormArray<any>}>>([]);
   steps: Step[] = [];
+  resultMessage: string = '';
 
   constructor(private router: Router,
     private playerService: PlayerService,
-    private gameService: GameService) {
+    private gameService: GameService,
+    public matDialog: MatDialog) {
       this.players.forEach(el => {
         const name = el.name;
         this.cards.push(
@@ -92,7 +95,9 @@ export class GameComponent implements OnInit {
       }
       else if (last + pointMove == 301) {
         massPointMove.push(last + pointMove);
-        alert(this.gameService.players[i].name + ' win!');
+        //alert(this.gameService.players[i].name + ' win!');
+        this.resultMessage = this.gameService.players[i].name;
+        this.showResult();
       }
 
       step[this.cards.value[i]!.name as string] = massPointMove[massPointMove.length - 1]
@@ -125,11 +130,10 @@ export class GameComponent implements OnInit {
       }
       else if (last - pointMove == 0) {
         massPointMove.push(last - pointMove);
-        alert(this.gameService.players[i].name + ' win!');
+        //alert(this.gameService.players[i].name + ' win!');
+        this.resultMessage = this.gameService.players[i].name;
+        this.showResult();
       }
-      /*else if (massPointMove.length !== 0 && massPointMove.length as number >= 20 && massPointMove.length as number < 30) {
-        massPointMove.push(last - pointMove);
-      }*/
 
       step[this.cards.value[i]!.name as string] = massPointMove[massPointMove.length - 1]
       console.log(this.gameService.players[i]);
@@ -137,6 +141,21 @@ export class GameComponent implements OnInit {
     this.steps.push(step);
     console.log(this.steps);
 
+  }
+
+  showResult() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "show-result";
+    dialogConfig.height = "window.screen.height";
+    dialogConfig.width = "window.screen.height";
+    dialogConfig.data = this.resultMessage;
+    const modalDialog = this.matDialog.open(GameResultComponent, dialogConfig);
+    modalDialog.afterClosed().subscribe(result => {
+      if (result === 'restart'){
+        this.selectGame();
+      }
+    });
   }
 
   selectGame() {

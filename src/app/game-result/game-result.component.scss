@@ -1,0 +1,33 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(1fr, 3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFFFFF;
+}
+
+.modal-title {
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FFBFF5;
+    background-clip: text;
+    text-shadow: 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.14), 0px 2.07958px 2.07958px rgba(0, 0, 0, 0.12), 0px 2.07958px 4.15917px rgba(0, 0, 0, 0.2);
+}
+
+.modal-footer {
+    justify-self: right;
+    align-self: center;
+}
+
+button {
+    background: #ffd727;
+    border: none;
+    width: 190px;
+    height: 45px;
+    border-radius: 2px;
+    font-size: larger;
+    color: rgb(77, 77, 77);
+    font-size: 16px;
+}
