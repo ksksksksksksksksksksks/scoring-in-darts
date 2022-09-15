@@ -31,7 +31,7 @@
 </div>
 
 <div class="start">
-  <button (click)="start()">Start</button>
+  <button (click)="start()" [disabled]="!gameType" [class.active]="gameType">Start</button>
 </div>
   
 

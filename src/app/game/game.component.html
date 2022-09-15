@@ -19,7 +19,11 @@
                 <div *ngFor="let _ of card.controls.points.controls; let i = index">
                     <!--FormGroup-->
                     <ng-container [formGroupName]="i">
-                        <input class="point" formControlName="point" />
+                        <input class="point" formControlName="point" [class.invalid]="card.controls.points.controls[i].invalid && card.controls.points.controls[i].touched" />
+                        <div class="alert-danger"
+                            *ngIf="card.controls.points.controls[i].invalid && card.controls.points.controls[i].touched">
+                            Invalid value
+                        </div>
                         <label class="check">
                             <input type="radio" value="1" formControlName="circle" />
                             1

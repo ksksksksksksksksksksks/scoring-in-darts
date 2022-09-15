@@ -55,7 +55,7 @@
     }
 
     button {
-        background-color: #ffd727;
+        background-color: #ffe677;
         border: none;
         height: 42px;
         width: 314px;
@@ -64,8 +64,18 @@
         font-size: 16px;
         margin-top: 55px;
     }
+
+    .active {
+        background-color: #ffd727;
+    }
+
+    .invalid  {
+        border: 2px solid red;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 }
 
 .alert-danger {
     color: red;
 }
+
