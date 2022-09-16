@@ -48,6 +48,7 @@ export class SelectGameComponent implements OnInit {
     this.router.navigateByUrl('game');
     for (let i = 0; i < this.players.length; i++){
       this.players[i].pointMove = [];
+      this.playerService.players[i].leader = false;
     }  
   }
   

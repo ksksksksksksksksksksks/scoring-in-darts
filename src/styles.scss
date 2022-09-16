@@ -1,9 +1,12 @@
 body {
     background-color: #039be6;
+    font-family: Roboto, sans-serif;
+    margin: 0;
 }
 
 mat-dialog-container#show-result {
     border: 3px solid #042036;
+    font-family: Roboto, sans-serif;
     border-radius: 11px;
     background-color: #09497e;
     color: aliceblue;

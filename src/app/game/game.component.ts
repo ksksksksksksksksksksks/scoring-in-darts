@@ -71,6 +71,50 @@ export class GameComponent implements OnInit {
     return gameType === "301" ? this.countPoint301() : this.countPoint501();
   }
 
+  removeLeader() {
+    for (let i: number = 0; i < this.playerService.players.length; i++){
+      this.playerService.players[i].leader = false;
+    }
+  }
+
+  showLeader(gameType: GameType) {
+    
+      this.removeLeader();
+      let leaderPointMove = this.gameService.players[0].pointMove as number[];
+      let max: number = leaderPointMove[leaderPointMove.length - 1];
+      let min: number = leaderPointMove[leaderPointMove.length - 1];
+      this.playerService.players[0].leader = true;
+      //console.log(leaderMove,max);
+
+      for (let i: number = 1; i < this.playerService.players.length; i++){
+        let massPointMove: number[] = this.gameService.players[i].pointMove as number[];
+
+        if (gameType === '301') {
+          if (massPointMove[massPointMove.length - 1] > max) {
+            max = massPointMove[massPointMove.length - 1];
+            this.removeLeader();
+            this.playerService.players[i].leader = true;
+            //console.log(max);
+          }
+          if (massPointMove[massPointMove.length - 1] === max) {
+            this.playerService.players[i].leader = true;
+          }
+        }
+
+        if (gameType === '501') {
+          if (massPointMove[massPointMove.length - 1] < min) {
+            min = massPointMove[massPointMove.length - 1];
+            this.removeLeader();
+            this.playerService.players[i].leader = true;
+            //console.log(min);
+          }
+          if (massPointMove[massPointMove.length - 1] === min) {
+            this.playerService.players[i].leader = true;
+          }
+        }
+      }    
+}
+
   countPoint301() {
     
   const step: Step = {};
@@ -86,12 +130,15 @@ export class GameComponent implements OnInit {
 
       if (massPointMove.length == 0) {
         massPointMove.push(pointMove);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointMove < 301) {
         massPointMove.push(last + pointMove);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointMove > 301) {
         massPointMove.push(last);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointMove == 301) {
         massPointMove.push(last + pointMove);
@@ -120,13 +167,16 @@ export class GameComponent implements OnInit {
       }
         
       if (massPointMove.length == 0) {
-          massPointMove.push(501 - pointMove);
+        massPointMove.push(501 - pointMove);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointMove > 0) {
         massPointMove.push(last - pointMove);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointMove < 0) {
         massPointMove.push(last);
+        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointMove == 0) {
         massPointMove.push(last - pointMove);

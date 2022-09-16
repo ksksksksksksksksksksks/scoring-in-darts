@@ -9,35 +9,43 @@
 </div>
 
 <div class="game-progress">
-    <!--FormArray-->
-    <div class=card *ngFor="let card of cards.controls">    
-        <!--FormGroup-->
-        <form [formGroup]="card">
-            <input class="name" formControlName="name" readonly />
-            <!--FormArray-->
-            <div formArrayName="points">
-                <div *ngFor="let _ of card.controls.points.controls; let i = index">
-                    <!--FormGroup-->
-                    <ng-container [formGroupName]="i">
-                        <input class="point" formControlName="point" 
-                            [class.invalid]="card.controls.points.controls[i].invalid && 
-                            card.controls.points.controls[i].touched" />
-                        <label class="check">
-                            <input type="radio" value="1" formControlName="circle" />
-                            1
-                        </label>
-                        <label class="check">
-                            <input type="radio" value="2" formControlName="circle" />
-                            2
-                        </label>
-                        <label class="check">
-                            <input type="radio" value="3" formControlName="circle" />
-                            3
-                        </label>
-                    </ng-container>
+    <div class="cards">
+        <!--FormArray-->
+        <div class="card" *ngFor="let card of cards.controls">    
+            <!--FormGroup-->
+            <form [formGroup]="card">
+                <input class="name" formControlName="name" readonly />
+                <!--FormArray-->
+                <div formArrayName="points">
+                    <div *ngFor="let _ of card.controls.points.controls; let i = index">
+                        <!--FormGroup-->
+                        <ng-container [formGroupName]="i">
+                            <input class="point" formControlName="point" 
+                                [class.invalid]="card.controls.points.controls[i].invalid && 
+                                card.controls.points.controls[i].touched" />
+                            <div class="form_radio_btn">
+                                <input id="circle-1" type="radio" value="1" formControlName="circle" class="circle" />    
+                                <label for="circle-1"  class="check">
+                                    1x
+                                </label>
+                            </div>    
+                            <div class="form_radio_btn">
+                                <input id="circle-2" type="radio" value="2" formControlName="circle" class="circle" />
+                                <label for="circle-2" class="check center-check">
+                                    2x
+                                </label>
+                            </div>
+                            <div class="form_radio_btn">   
+                            <input id="circle-3" type="radio" value="3" formControlName="circle" class="circle" />
+                            <label for="circle-3" class="check last-check">
+                                    3x
+                            </label>
+                            </div>    
+                        </ng-container>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <button [disabled]="cards.invalid" (click)="countPoint(gameType)" [class.active]="!cards.invalid">
         Add
@@ -47,6 +55,7 @@
 <table>
     <th *ngFor="let player of players">
         {{player.name}}
+        <div *ngIf="player.leader"></div>
     </th>
     <tr *ngFor="let step of steps">
         <td *ngFor="let player of players">
@@ -55,3 +64,45 @@
     </tr>
 </table>
 
+<!-- <ng-container [formGroupName]="i">
+    <input class="point" formControlName="point" 
+        [class.invalid]="card.controls.points.controls[i].invalid && 
+        card.controls.points.controls[i].touched" />
+    <div class="form_radio_btn">
+        <input id="circle-1" type="radio" value="1" formControlName="circle" class="circle" />    
+        <label for="circle-1"  class="check">
+            1x
+        </label>
+    </div>    
+    <div class="form_radio_btn">
+        <input id="circle-2" type="radio" value="2" formControlName="circle" class="circle" />
+        <label for="circle-2" class="check center-check">
+            2x
+        </label>
+    </div>
+    <div class="form_radio_btn">    
+        <input id="circle-3" type="radio" value="3" formControlName="circle" class="circle" />
+        <label for="circle-3" class="check">
+            3x
+        </label>
+    </div>    
+</ng-container> -->
+
+
+<!-- <ng-container [formGroupName]="i">
+    <input class="point" formControlName="point" 
+        [class.invalid]="card.controls.points.controls[i].invalid && 
+        card.controls.points.controls[i].touched" />
+    <label [class.check]="circle.value === 1">
+        <input type="radio" value="1" formControlName="circle" class="circle" />
+        1x
+    </label>
+    <label class="check center-check">
+        <input type="radio" value="2" formControlName="circle" class="circle" />
+        2x
+    </label>
+    <label class="check">
+        <input type="radio" value="3" formControlName="circle" class="circle" />
+        3x
+    </label>
+</ng-container> -->

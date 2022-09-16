@@ -13,5 +13,5 @@ export class SearchPipe implements PipeTransform {
 
         strInput = strInput.toLowerCase();
         return players.filter( (value: Player) => value.name.toLowerCase().includes(strInput));
-    }  
+    } 
 }
