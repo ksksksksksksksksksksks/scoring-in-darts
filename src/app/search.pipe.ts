@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Player } from './domain/player';
 
 @Pipe({
-    name:'search'
+    name:'search',
+    pure: false
 })
-
 export class SearchPipe implements PipeTransform {
     transform(players: Player[], strInput: string): Player[] {     
         if (!strInput) {

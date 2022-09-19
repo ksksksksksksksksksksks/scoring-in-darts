@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddPlayerComponent } from './add-player/add-player.component';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Player } from './domain/player';
 
 @Injectable({
@@ -9,11 +8,13 @@ import { Player } from './domain/player';
 export class PlayerService {
   
   players: Player[] = [
-    {name: 'Jack', email: 'jack@gmail.com'},
-    {name: 'Harry', email: 'harry@gmail.com'},
-    {name: 'Thomas', email: 'thomas@gmail.com'},
-    {name: 'Charley'}
+    {name: 'Sherlock Holmes', email: 'sherlock.holmes@gmail.com'},
+    {name: 'Dr. John Watson', email: 'dr.john.watson@gmail.com'},
+    {name: 'Mrs. Stubbs', email: 'stubbs@gmail.com'},
+    {name: 'Jim Moriarty', email: 'jim.moriarty@gmail.com'}
   ];
+
+  myPlayers = of(this.players);
 
   constructor() { }
       
@@ -29,6 +30,10 @@ export class PlayerService {
     this.players.forEach( (value, index) => {
       if (value == element) this.players.splice(index, 1);
     });
+  }
+
+  getPlayers() {
+    return this.myPlayers;
   }
 
 }

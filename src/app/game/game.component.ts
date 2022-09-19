@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
 import { FormGroup, FormControl, Validators, FormArray, AbstractControl} from '@angular/forms';
-import { VirtualTimeScheduler } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GameResultComponent } from '../game-result/game-result.component'
 
@@ -20,7 +19,7 @@ interface Step {
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements OnInit {
+export class GameComponent {
   
   @Input() public gameType!: GameType;
   player: Player = {name: ''};
@@ -41,9 +40,6 @@ export class GameComponent implements OnInit {
       });
       this.gameType = this.gameService.gameType;
   }
-
-  ngOnInit(): void {
-  }  
 
   private getCardFormGroup(name: string): FormGroup {
     return new FormGroup({
@@ -84,7 +80,6 @@ export class GameComponent implements OnInit {
       let max: number = leaderPointMove[leaderPointMove.length - 1];
       let min: number = leaderPointMove[leaderPointMove.length - 1];
       this.playerService.players[0].leader = true;
-      //console.log(leaderMove,max);
 
       for (let i: number = 1; i < this.playerService.players.length; i++){
         let massPointMove: number[] = this.gameService.players[i].pointMove as number[];
@@ -94,8 +89,8 @@ export class GameComponent implements OnInit {
             max = massPointMove[massPointMove.length - 1];
             this.removeLeader();
             this.playerService.players[i].leader = true;
-            //console.log(max);
           }
+
           if (massPointMove[massPointMove.length - 1] === max) {
             this.playerService.players[i].leader = true;
           }
@@ -106,8 +101,8 @@ export class GameComponent implements OnInit {
             min = massPointMove[massPointMove.length - 1];
             this.removeLeader();
             this.playerService.players[i].leader = true;
-            //console.log(min);
           }
+
           if (massPointMove[massPointMove.length - 1] === min) {
             this.playerService.players[i].leader = true;
           }
@@ -128,7 +123,7 @@ export class GameComponent implements OnInit {
         pointMove += massPoint.controls[j].value.point * massPoint.controls[j].value.circle;
       }
 
-      if (massPointMove.length == 0) {
+      if (massPointMove.length === 0) {
         massPointMove.push(pointMove);
         this.showLeader(this.gameService.gameType);
       }
@@ -140,9 +135,8 @@ export class GameComponent implements OnInit {
         massPointMove.push(last);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last + pointMove == 301) {
+      else if (last + pointMove === 301) {
         massPointMove.push(last + pointMove);
-        //alert(this.gameService.players[i].name + ' win!');
         this.resultMessage = this.gameService.players[i].name;
         this.showResult();
       }
@@ -166,7 +160,7 @@ export class GameComponent implements OnInit {
         pointMove += massPoint.controls[j].value.point * massPoint.controls[j].value.circle;
       }
         
-      if (massPointMove.length == 0) {
+      if (massPointMove.length === 0) {
         massPointMove.push(501 - pointMove);
         this.showLeader(this.gameService.gameType);
       }
@@ -178,9 +172,8 @@ export class GameComponent implements OnInit {
         massPointMove.push(last);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last - pointMove == 0) {
+      else if (last - pointMove === 0) {
         massPointMove.push(last - pointMove);
-        //alert(this.gameService.players[i].name + ' win!');
         this.resultMessage = this.gameService.players[i].name;
         this.showResult();
       }

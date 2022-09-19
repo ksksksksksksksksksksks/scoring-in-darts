@@ -13,13 +13,13 @@
       <div class="icon"></div>
     </div>
     <button (click)="addPlayer()">New player</button>
-      <tr *ngFor="let player of players | search: strInput">
+      <tr *ngFor="let myPlayer of players | search: strInput">
         <td class="name">
-          {{player.name}}
+          {{myPlayer.name}}
         </td> 
         <td>
-          {{player.email}}
-          <span class="closeBtn" (click)="removePlayer(player)">&times;</span> 
+          {{myPlayer.email}}
+          <span class="closeBtn" (click)="removePlayer(myPlayer)">&times;</span> 
         </td> 
       </tr>  
   </div>
@@ -34,10 +34,10 @@
     </div>
   </div>
 
-    <button class="start" (click)="start()" [disabled]="!gameType || this.playerService.players.length < 2" 
-      [class.active]="gameType && this.playerService.players.length >= 2">
-      Start
-    </button>
+  <button class="start" (click)="start()" [disabled]="!gameType || this.playerService.players.length < 2" 
+    [class.active]="gameType && this.playerService.players.length >= 2">
+    Start
+  </button>
 </div>
   
 

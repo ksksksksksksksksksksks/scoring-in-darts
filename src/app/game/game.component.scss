@@ -5,8 +5,8 @@
     margin-top: 20px;
 
     .logo {
-        width: 201px;
-        min-width: 201px;
+        width: 183px;
+        min-width: 183px;
         color: #ffffff;
         text-transform: uppercase;
         font-size: 30px;
@@ -20,7 +20,7 @@
 
         .logo-points {
             font-weight: bold; 
-            font-size: 55px;
+            font-size: 52px;
         }
         
         .logo-edition {
@@ -58,7 +58,6 @@
         flex-wrap: wrap;
 
         .dart {
-            //width: 20px;
             display: inline-block;
             color: #ffffff;
             margin-right: 20px;
@@ -92,7 +91,6 @@
                 display: inline-block;
                 padding: 1px;
                 text-align: center;
-                //padding-bottom: 4px;
                 margin: 0;
                 background-color: #ffffff;
                 cursor: pointer;
@@ -123,10 +121,6 @@
             .circle {
                 display: none;
             }
-
-            // .form_radio_btn {
-            //     display: inline-block;
-            // }
 
             .checked {
                 color: #ffffff;
@@ -170,24 +164,30 @@
     .step {
         display: inline-block;
         width: 5%;
-        margin-top: 65px;
-    
-        td {
-            height: 43px;
-            color: #ffffff;
+        margin-top: 72.8px;
+        
+        table {
+            background: none;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 16px;
+
+            td {
+                height: 40px;
+                color: #ffffff;
+                border-bottom: 2px solid #039be6;
+            }
         }
     }
 
     .step-point {
         display: inline-block;
-        // position: relative;
         width: 95%;
         margin-top: 40px;
-        //padding-top: 40px;
+        vertical-align: top;
     
         table {
             width: 100%;
-            //height: 40px;
             border-collapse: collapse;
             color: rgb(77, 77, 77);
             text-align: center;
@@ -198,11 +198,10 @@
                 background: #039be6;
                 color: #ffffff;
                 font-weight: 400;
-                //padding-top: 40px;
                 padding-bottom: 5px;
         
                 div {
-                    background: url('https://i.ibb.co/YyshprJ/icons8-48-1.png') no-repeat;
+                    background: url('https://raw.githubusercontent.com/sumarenko/scoring-in-darts/main/src/assets/icon.png') no-repeat;
                     width: 22px;
                     height: 22px;
                     display: inline-block;
