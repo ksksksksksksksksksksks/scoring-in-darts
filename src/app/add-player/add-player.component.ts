@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlayerService } from 'src/app/player.service';
-import { Player } from '../domain/player';
-import { AbstractControl, ValidatorFn  } from '@angular/forms';
 import { GameService } from 'src/app/game.service';
 
 @Component({
@@ -12,16 +9,12 @@ import { GameService } from 'src/app/game.service';
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.scss'],
 })
-export class AddPlayerComponent implements OnInit {
-
-  ngOnInit(): void {
-  }
+export class AddPlayerComponent {
 
   form: FormGroup;
     
   constructor(private router: Router,
-    private playerService: PlayerService,
-    private gameService: GameService) {
+    private playerService: PlayerService) {
       this.form = new FormGroup({
         name: new FormControl('', [
           Validators.required,
@@ -45,5 +38,4 @@ export class AddPlayerComponent implements OnInit {
     }
     return null;
   }
-
 }

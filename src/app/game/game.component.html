@@ -11,36 +11,41 @@
 <div class="game-progress">
     <div class="cards">
         <!--FormArray-->
-        <div class="card" *ngFor="let card of cards.controls">    
+        <div class="card" *ngFor="let card of cards.controls; let j = index"
+        [class.first-card]="j === 0">    
             <!--FormGroup-->
             <form [formGroup]="card">
-                <input class="name" formControlName="name" readonly />
+                <input class="name" formControlName="name" readonly 
+                [class.name-first-card]="j === 0"/>
                 <!--FormArray-->
                 <div formArrayName="points">
                     <div *ngFor="let _ of card.controls.points.controls; let i = index">
                         <!--FormGroup-->
                         <ng-container [formGroupName]="i">
+                            <div *ngIf="j === 0 && i===0" class="dart">
+                                Dart 1
+                            </div>  
+                            <div *ngIf="j === 0 && i===1" class="dart">
+                                Dart 2
+                            </div>
+                            <div *ngIf="j === 0 && i===2" class="dart">
+                                Dart 3
+                            </div>
                             <input class="point" formControlName="point" 
                                 [class.invalid]="card.controls.points.controls[i].invalid && 
-                                card.controls.points.controls[i].touched" />
-                            <div class="form_radio_btn">
-                                <input id="circle-1" type="radio" value="1" formControlName="circle" class="circle" />    
-                                <label for="circle-1"  class="check">
-                                    1x
-                                </label>
-                            </div>    
-                            <div class="form_radio_btn">
-                                <input id="circle-2" type="radio" value="2" formControlName="circle" class="circle" />
-                                <label for="circle-2" class="check center-check">
-                                    2x
-                                </label>
-                            </div>
-                            <div class="form_radio_btn">   
-                            <input id="circle-3" type="radio" value="3" formControlName="circle" class="circle" />
-                            <label for="circle-3" class="check last-check">
-                                    3x
+                                card.controls.points.controls[i].touched" />  
+                            <label class="check" [class.checked]="card.controls.points.controls[i].value.circle === '1'">
+                            <input type="radio" value="1" formControlName="circle" class="circle" />
+                                1x
                             </label>
-                            </div>    
+                            <label class="check center-check" [class.checked]="card.controls.points.controls[i].value.circle === '2'">
+                                <input type="radio" value="2" formControlName="circle" class="circle" />
+                                2x
+                            </label>
+                            <label class="check last-check" [class.checked]="card.controls.points.controls[i].value.circle === '3'"> 
+                            <input type="radio" value="3" formControlName="circle" class="circle" />
+                                3x
+                            </label>
                         </ng-container>
                     </div>
                 </div>
@@ -52,17 +57,33 @@
     </button> 
 </div>
 
-<table>
-    <th *ngFor="let player of players">
-        {{player.name}}
-        <div *ngIf="player.leader"></div>
-    </th>
-    <tr *ngFor="let step of steps">
-        <td *ngFor="let player of players">
-            {{step[player.name]}}
-        </td>
-    </tr>
-</table>
+<div class="table-step">
+    <div class="step">
+        <table>
+            <tr *ngFor="let step of steps; let i = index;">
+                <td *ngFor="let player of players; let j = index;">
+                    <div *ngIf="j===0">
+                        {{i + 1}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="step-point">
+        <table>
+            <th *ngFor="let player of players">
+                {{player.name}}
+                <div *ngIf="player.leader"></div>
+            </th>
+            <tr *ngFor="let step of steps; let i = index;">
+                <td *ngFor="let player of players; let j = index;">
+                    {{step[player.name]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 
 <!-- <ng-container [formGroupName]="i">
     <input class="point" formControlName="point" 
@@ -105,4 +126,28 @@
         <input type="radio" value="3" formControlName="circle" class="circle" />
         3x
     </label>
+</ng-container> -->
+
+<!-- <ng-container [formGroupName]="i">
+    <input class="point" formControlName="point" 
+        [class.invalid]="card.controls.points.controls[i].invalid && 
+        card.controls.points.controls[i].touched" />
+    <div class="form_radio_btn">
+        <input id="circle-1" type="radio" value="1" formControlName="circle" class="circle" />    
+        <label for="circle-1"  class="check">
+            1x
+        </label>
+    </div>    
+    <div class="form_radio_btn">
+        <input id="circle-2" type="radio" value="2" formControlName="circle" class="circle" />
+        <label for="circle-2" class="check center-check">
+            2x
+        </label>
+    </div>
+    <div class="form_radio_btn">   
+    <input id="circle-3" type="radio" value="3" formControlName="circle" class="circle" />
+    <label for="circle-3" class="check last-check">
+            3x
+    </label>
+    </div>    
 </ng-container> -->

@@ -3,10 +3,8 @@ import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
-import { GameComponent } from '../game/game.component';
 
 type GameType = "501" | "301";
-
 
 @Component({
   selector: 'app-select-game',
@@ -15,12 +13,8 @@ type GameType = "501" | "301";
 })
 export class SelectGameComponent implements OnInit {
 
-  ngOnInit(): void {
-    this.players = this.playerService.getPlayer();
-  }
-
   @Input() public gameType!: GameType;
-  player: Player = {name: ''};
+  player!: Player;
   players: Player[] = this.playerService.players;
   strInput: string = '';
 
@@ -29,28 +23,29 @@ export class SelectGameComponent implements OnInit {
     private gameService: GameService) {
   }
 
+  ngOnInit(): void {
+    this.players = this.playerService.getPlayer();
+  }
+
   addPlayer() {
     this.router.navigateByUrl('add-player');
   }
 
-  removePlayer(player: Player){
+  removePlayer(player: Player) {
     this.playerService.removePlayer(player);
   }
 
-  chooseGame(typeGame: GameType){
+  chooseGame(typeGame: GameType) {
     this.gameType = typeGame;
     this.gameService.gameType = typeGame;
-
-    //console.log(this.gameService.gameType);
   }
 
   start() {
     this.router.navigateByUrl('game');
-    for (let i = 0; i < this.players.length; i++){
+    for (let i = 0; i < this.players.length; i++) {
       this.players[i].pointMove = [];
       this.playerService.players[i].leader = false;
     }  
-  }
-  
+  } 
 }
 
