@@ -53,27 +53,20 @@
     </button> 
 </div>
 
-<div class="table-step">
-    <div class="step">
-        <table>
-            <tr *ngFor="let step of steps; let i = index;">
-                <td>
-                    {{i + 1}}
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="step-point">
-        <table>
-            <th *ngFor="let player of players">
-                {{player.name}}
-                <div *ngIf="player.leader"></div>
-            </th>
-            <tr *ngFor="let step of steps; let i = index;">
-                <td *ngFor="let player of players; let j = index;">
-                    {{step[player.name]}}
-                </td>
-            </tr>
-        </table>
-    </div>
+<div class="step-point">
+    <table>
+        <th></th>
+        <th *ngFor="let player of players">
+            {{player.name}}
+            <div *ngIf="player.leader"></div>
+        </th>
+        <tr *ngFor="let step of steps | reverse; let i = index;">
+            <td class="step-num">
+                {{this.steps.indexOf(step) + 1}}
+            </td>
+            <td *ngFor="let player of players">
+                {{step[player.name]}}
+            </td>
+        </tr>
+    </table>
 </div>

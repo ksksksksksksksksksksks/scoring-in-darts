@@ -1,6 +1,6 @@
 export interface Player {
     name: string;
     email?: string;
-    pointMove?: number[];
+    pointStep?: number[];
     leader?: boolean;
 }

@@ -1,10 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game-result',
   templateUrl: './game-result.component.html',
-  styleUrls: ['./game-result.component.scss']
+  styleUrls: ['./game-result.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+  
 })
 export class GameResultComponent {
   winner: string = '';

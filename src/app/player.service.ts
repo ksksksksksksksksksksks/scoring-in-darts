@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 import { Player } from './domain/player';
 
 @Injectable({
@@ -13,8 +12,6 @@ export class PlayerService {
     {name: 'Mrs. Stubbs', email: 'stubbs@gmail.com'},
     {name: 'Jim Moriarty', email: 'jim.moriarty@gmail.com'}
   ];
-
-  myPlayers = of(this.players);
 
   constructor() { }
       
@@ -30,10 +27,6 @@ export class PlayerService {
     this.players.forEach( (value, index) => {
       if (value == element) this.players.splice(index, 1);
     });
-  }
-
-  getPlayers() {
-    return this.myPlayers;
   }
 
 }

@@ -57,12 +57,6 @@
         margin-top: 40px;
         flex-wrap: wrap;
 
-        .dart {
-            display: inline-block;
-            color: #ffffff;
-            margin-right: 20px;
-        }
-
         .card {
             margin-left: 5%;
 
@@ -74,6 +68,12 @@
 
             .name-first-card {
                 margin-left: 58px;
+            }
+
+            .dart {
+                display: inline-block;
+                color: #ffffff;
+                margin-right: 20px;
             }
     
             .point {
@@ -127,7 +127,7 @@
                 background: rgb(77, 77, 77);
             }
             
-            .invalid  {
+            .invalid {
                 border: 2px solid red;
             }
         }
@@ -157,33 +157,9 @@
     }
 }
 
-.table-step {
-    width: 70%;
-    margin: auto auto 40px auto;
-
-    .step {
-        display: inline-block;
-        width: 5%;
-        margin-top: 72.8px;
-        
-        table {
-            background: none;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 16px;
-
-            td {
-                height: 40px;
-                color: #ffffff;
-                border-bottom: 2px solid #039be6;
-            }
-        }
-    }
-
     .step-point {
-        display: inline-block;
-        width: 95%;
-        margin-top: 40px;
+        width: 70%;
+        margin: 40px auto 100px auto;
         vertical-align: top;
     
         table {
@@ -214,6 +190,13 @@
                 height: 40px;
                 border-bottom: 2px solid #039be6;
             }
+
+            .step-num {
+                background: #039be6;
+                color: #ffffff;
+                width: 20px;
+                padding-right: 15px;
+                text-align: right;
         }
     }
 }

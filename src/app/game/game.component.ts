@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
@@ -16,7 +16,8 @@ interface Step {
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class GameComponent {
@@ -57,7 +58,8 @@ export class GameComponent {
       point: new FormControl(1, [
         Validators.required,
         Validators.min(1),
-        Validators.max(20)
+        Validators.max(20),
+        Validators.pattern("^[0-9]*$")
       ]),
       circle: new FormControl("1", Validators.required)
     });
@@ -74,116 +76,117 @@ export class GameComponent {
   }
 
   showLeader(gameType: GameType) {
-    
-      this.removeLeader();
-      let leaderPointMove = this.gameService.players[0].pointMove as number[];
-      let max: number = leaderPointMove[leaderPointMove.length - 1];
-      let min: number = leaderPointMove[leaderPointMove.length - 1];
-      this.playerService.players[0].leader = true;
+    this.removeLeader();
+    let leaderPointStep = this.gameService.players[0].pointStep as number[];
+    let max: number = leaderPointStep[leaderPointStep.length - 1];
+    let min: number = leaderPointStep[leaderPointStep.length - 1];
+    this.playerService.players[0].leader = true;
 
-      for (let i: number = 1; i < this.playerService.players.length; i++){
-        let massPointMove: number[] = this.gameService.players[i].pointMove as number[];
+    for (let i: number = 1; i < this.playerService.players.length; i++){
+      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
 
-        if (gameType === '301') {
-          if (massPointMove[massPointMove.length - 1] > max) {
-            max = massPointMove[massPointMove.length - 1];
-            this.removeLeader();
-            this.playerService.players[i].leader = true;
-          }
-
-          if (massPointMove[massPointMove.length - 1] === max) {
-            this.playerService.players[i].leader = true;
-          }
+      if (gameType === '301') {
+        if (arrPointStep[arrPointStep.length - 1] > max) {
+          max = arrPointStep[arrPointStep.length - 1];
+          this.removeLeader();
+          this.playerService.players[i].leader = true;
         }
 
-        if (gameType === '501') {
-          if (massPointMove[massPointMove.length - 1] < min) {
-            min = massPointMove[massPointMove.length - 1];
-            this.removeLeader();
-            this.playerService.players[i].leader = true;
-          }
-
-          if (massPointMove[massPointMove.length - 1] === min) {
-            this.playerService.players[i].leader = true;
-          }
+        if (arrPointStep[arrPointStep.length - 1] === max) {
+          this.playerService.players[i].leader = true;
         }
-      }    
-}
+      }
 
-  countPoint301() {
-    
-  const step: Step = {};
+      if (gameType === '501') {
+        if (arrPointStep[arrPointStep.length - 1] < min) {
+          min = arrPointStep[arrPointStep.length - 1];
+          this.removeLeader();
+          this.playerService.players[i].leader = true;
+        }
+
+        if (arrPointStep[arrPointStep.length - 1] === min) {
+          this.playerService.players[i].leader = true;
+        }
+      }
+    }    
+  }
+
+  countPoint301() { 
+    const step: Step = {};
+
     for (let i = 0; i < this.cards.length; i++) {
-      let pointMove: number = 0;
-      let massPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
-      let massPointMove: number[] = this.gameService.players[i].pointMove as number[];
-      let last: number = massPointMove[massPointMove.length - 1];
+      let pointStep: number = 0;
+      let arrPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
+      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
+      let last: number = arrPointStep[arrPointStep.length - 1];
       
-      for (let j = 0; j < massPoint.length; j++) {
-        pointMove += massPoint.controls[j].value.point * massPoint.controls[j].value.circle;
+      for (let j = 0; j < arrPoint.length; j++) {
+        pointStep += arrPoint.controls[j].value.point * arrPoint.controls[j].value.circle;
       }
 
-      if (massPointMove.length === 0) {
-        massPointMove.push(pointMove);
+      if (arrPointStep.length === 0) {
+        arrPointStep.push(pointStep);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last + pointMove < 301) {
-        massPointMove.push(last + pointMove);
+      else if (last + pointStep < 301) {
+        arrPointStep.push(last + pointStep);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last + pointMove > 301) {
-        massPointMove.push(last);
+      else if (last + pointStep > 301) {
+        arrPointStep.push(last);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last + pointMove === 301) {
-        massPointMove.push(last + pointMove);
+      else if (last + pointStep === 301) {
+        arrPointStep.push(last + pointStep);
         this.resultMessage = this.gameService.players[i].name;
         this.showResult();
       }
 
-      step[this.cards.value[i]!.name as string] = massPointMove[massPointMove.length - 1]
-      console.log(this.gameService.players[i]);
+      step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
+      // console.log(this.gameService.players[i]);
     }
+
     this.steps.push(step);
-    console.log(this.steps);
+    // console.log(this.steps);
   }
 
   countPoint501() {
     const step: Step = {};
-    for (let i = 0; i < this.cards.length; i++) {
-      let pointMove: number = 0;
-      let massPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
-      let massPointMove: number[] = this.gameService.players[i].pointMove as number[];
-      let last: number = massPointMove[massPointMove.length - 1];
 
-      for (let j = 0; j < massPoint.length; j++) {
-        pointMove += massPoint.controls[j].value.point * massPoint.controls[j].value.circle;
+    for (let i = 0; i < this.cards.length; i++) {
+      let pointStep: number = 0;
+      let arrPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
+      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
+      let last: number = arrPointStep[arrPointStep.length - 1];
+
+      for (let j = 0; j < arrPoint.length; j++) {
+        pointStep += arrPoint.controls[j].value.point * arrPoint.controls[j].value.circle;
       }
         
-      if (massPointMove.length === 0) {
-        massPointMove.push(501 - pointMove);
+      if (arrPointStep.length === 0) {
+        arrPointStep.push(501 - pointStep);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last - pointMove > 0) {
-        massPointMove.push(last - pointMove);
+      else if (last - pointStep > 0) {
+        arrPointStep.push(last - pointStep);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last - pointMove < 0) {
-        massPointMove.push(last);
+      else if (last - pointStep < 0) {
+        arrPointStep.push(last);
         this.showLeader(this.gameService.gameType);
       }
-      else if (last - pointMove === 0) {
-        massPointMove.push(last - pointMove);
+      else if (last - pointStep === 0) {
+        arrPointStep.push(last - pointStep);
         this.resultMessage = this.gameService.players[i].name;
         this.showResult();
       }
 
-      step[this.cards.value[i]!.name as string] = massPointMove[massPointMove.length - 1]
-      console.log(this.gameService.players[i]);
+      step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
+      // console.log(this.gameService.players[i]);
     }
-    this.steps.push(step);
-    console.log(this.steps);
 
+    this.steps.push(step);
+    // console.log(this.steps);
   }
 
   showResult() {

@@ -14,7 +14,7 @@ export class GameService {
 
   constructor(private playerService: PlayerService) {
     for (let i = 0; i < this.players.length; i++){
-      this.players[i].pointMove = [];
+      this.players[i].pointStep = [];
     }  
   }
 

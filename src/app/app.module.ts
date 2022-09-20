@@ -15,6 +15,7 @@ import { PlayerService } from './player.service';
 import { GameService } from './game.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
+import { ReversePipe } from './reverse.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameResultComponent } from './game-result/game-result.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -32,6 +33,7 @@ const routes = [
     AddPlayerComponent,
     GameComponent,
     SearchPipe,
+    ReversePipe,
     GameResultComponent
   ],
   imports: [

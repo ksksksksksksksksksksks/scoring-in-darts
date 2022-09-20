@@ -21,7 +21,6 @@ export class SelectGameComponent implements OnInit {
   player!: Player;
   players: Player[] = this.playerService.players;
   strInput: string = '';
-  // myPlayers: Player[] = [];
 
   constructor(private router: Router, 
     public playerService: PlayerService,
@@ -30,30 +29,15 @@ export class SelectGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.players = this.playerService.getPlayer();
-    // this.playerService.getPlayers().subscribe( players => {  
-    //   console.log("is array equal ---> ", this.players === players);   
-    //   this.myPlayers = <never>players;       
-    // })
   }
 
-  // addData() {
-  //   let data = this.child.form.value;
-  //   this.myPlayers.push(<never>data);
-  // }
-
   removePlayer(player: Player) {
-    // let index = this.myPlayers.indexOf(<never>player);
-    // this.myPlayers = this.myPlayers.filter( (value, i) => i != index);
     this.playerService.removePlayer(player);
   }
 
   addPlayer() {
     this.router.navigateByUrl('add-player');
   }
-
-  // removePlayer(player: Player) {
-  //   this.playerService.removePlayer(player);
-  // }
 
   chooseGame(typeGame: GameType) {
     this.gameType = typeGame;
@@ -63,7 +47,7 @@ export class SelectGameComponent implements OnInit {
   start() {
     this.router.navigateByUrl('game');
     for (let i = 0; i < this.players.length; i++) {
-      this.players[i].pointMove = [];
+      this.players[i].pointStep = [];
       this.playerService.players[i].leader = false;
     }  
   }
