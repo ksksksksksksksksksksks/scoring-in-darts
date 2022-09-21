@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
-import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
 import { AddPlayerComponent } from  '../add-player/add-player.component';
 
@@ -21,8 +20,7 @@ export class SelectGameComponent implements OnInit {
   public strInput: string = '';
 
   constructor(private router: Router, 
-    public playerService: PlayerService,
-    private gameService: GameService) {
+    public playerService: PlayerService) {
   }
 
   ngOnInit(): void {
@@ -42,7 +40,7 @@ export class SelectGameComponent implements OnInit {
   }
 
   start() {
-    this.gameType === "301" ? this.router.navigateByUrl('game/301') : this.router.navigateByUrl('game/501'); 
+    this.gameType === "301" ? this.router.navigateByUrl('game/301') : this.router.navigateByUrl('game/501');
   }
 }
 

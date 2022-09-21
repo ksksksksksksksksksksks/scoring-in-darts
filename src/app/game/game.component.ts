@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
@@ -23,7 +23,7 @@ interface Step {
 export class GameComponent {
   
   public gameType: GameType;
-  public players: Player[] = this.playerService.players;
+  public players: Player[] = this.gameService.players;
   public cards = new FormArray<FormGroup<{name: AbstractControl<string>; points: FormArray<any>}>>([]);
   public steps: Step[] = [];
 
@@ -40,8 +40,8 @@ export class GameComponent {
       this.gameType = route.snapshot.params['type'];
       for (let i = 0; i < this.players.length; i++) {
         this.players[i].pointStep = [];
-        this.playerService.players[i].leader = false;
-      } 
+        this.players[i].leader = false;
+      }
   }
 
   private getCardFormGroup(name: string): FormGroup {
@@ -72,30 +72,30 @@ export class GameComponent {
   }
 
   removeLeader() {
-    for (let i: number = 0; i < this.playerService.players.length; i++){
-      this.playerService.players[i].leader = false;
+    for (let i: number = 0; i < this.players.length; i++){
+      this.players[i].leader = false;
     }
   }
 
   showLeader(gameType: GameType) {
     this.removeLeader();
-    let leaderPointStep = this.gameService.players[0].pointStep as number[];
+    let leaderPointStep = this.players[0].pointStep as number[];
     let max: number = leaderPointStep[leaderPointStep.length - 1];
     let min: number = leaderPointStep[leaderPointStep.length - 1];
-    this.playerService.players[0].leader = true;
+    this.players[0].leader = true;
 
-    for (let i: number = 1; i < this.playerService.players.length; i++){
-      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
+    for (let i: number = 1; i < this.players.length; i++){
+      let arrPointStep: number[] = this.players[i].pointStep as number[];
 
       if (gameType === '301') {
         if (arrPointStep[arrPointStep.length - 1] > max) {
           max = arrPointStep[arrPointStep.length - 1];
           this.removeLeader();
-          this.playerService.players[i].leader = true;
+          this.players[i].leader = true;
         }
 
         if (arrPointStep[arrPointStep.length - 1] === max) {
-          this.playerService.players[i].leader = true;
+          this.players[i].leader = true;
         }
       }
 
@@ -103,11 +103,11 @@ export class GameComponent {
         if (arrPointStep[arrPointStep.length - 1] < min) {
           min = arrPointStep[arrPointStep.length - 1];
           this.removeLeader();
-          this.playerService.players[i].leader = true;
+          this.players[i].leader = true;
         }
 
         if (arrPointStep[arrPointStep.length - 1] === min) {
-          this.playerService.players[i].leader = true;
+          this.players[i].leader = true;
         }
       }
     }    
@@ -119,7 +119,7 @@ export class GameComponent {
     for (let i = 0; i < this.cards.length; i++) {
       let pointStep: number = 0;
       let arrPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
-      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
+      let arrPointStep: number[] = this.players[i].pointStep as number[];
       let last: number = arrPointStep[arrPointStep.length - 1];
       
       for (let j = 0; j < arrPoint.length; j++) {
@@ -137,7 +137,7 @@ export class GameComponent {
       }
       else if (last + pointStep === 301) {
         arrPointStep.push(last + pointStep);
-        this.showResult(this.gameService.players[i].name);
+        this.showResult(this.players[i].name);
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
@@ -153,7 +153,7 @@ export class GameComponent {
     for (let i = 0; i < this.cards.length; i++) {
       let pointStep: number = 0;
       let arrPoint: FormArray<any> = this.cards.controls[i].controls.points as FormArray<any>;
-      let arrPointStep: number[] = this.gameService.players[i].pointStep as number[];
+      let arrPointStep: number[] = this.players[i].pointStep as number[];
       let last: number = arrPointStep[arrPointStep.length - 1];
 
       for (let j = 0; j < arrPoint.length; j++) {
@@ -171,7 +171,7 @@ export class GameComponent {
       }
       else if (last - pointStep === 0) {
         arrPointStep.push(last - pointStep);
-        this.showResult(this.gameService.players[i].name);
+        this.showResult(this.players[i].name);
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
