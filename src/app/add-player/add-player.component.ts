@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlayerService } from 'src/app/player.service';
-import { GameService } from 'src/app/game.service';
 
 @Component({
   selector: 'app-add-player',
@@ -11,7 +10,7 @@ import { GameService } from 'src/app/game.service';
 })
 export class AddPlayerComponent {
 
-  form: FormGroup;
+  public form: FormGroup;
     
   constructor(private router: Router,
     private playerService: PlayerService) {

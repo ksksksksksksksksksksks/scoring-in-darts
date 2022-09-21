@@ -1,6 +1,7 @@
 import { Injectable, Input } from '@angular/core';
 import { Player } from './domain/player';
 import { PlayerService } from 'src/app/player.service';
+
 type GameType = "501" | "301";
 
 @Injectable({
@@ -8,8 +9,7 @@ type GameType = "501" | "301";
 })
 export class GameService {
 
-  @Input() public gameType!: GameType;
-  player: Player = {name: ''};
+  gameType!: GameType;
   players: Player[] = this.playerService.players;
 
   constructor(private playerService: PlayerService) {

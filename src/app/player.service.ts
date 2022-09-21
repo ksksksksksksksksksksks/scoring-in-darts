@@ -15,7 +15,7 @@ export class PlayerService {
 
   constructor() { }
       
-  getPlayer(): Player[] {    
+  getPlayers(): Player[] {    
     return this.players;
   }
 

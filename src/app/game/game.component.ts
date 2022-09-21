@@ -22,21 +22,18 @@ interface Step {
 
 export class GameComponent {
   
-  @Input() public gameType!: GameType;
-  player: Player = {name: ''};
-  players: Player[] = this.playerService.players;
-  cards = new FormArray<FormGroup<{name: AbstractControl<string>; points: FormArray<any>}>>([]);
-  steps: Step[] = [];
-  resultMessage: string = '';
+  public gameType: GameType;
+  public players: Player[] = this.playerService.players;
+  public cards = new FormArray<FormGroup<{name: AbstractControl<string>; points: FormArray<any>}>>([]);
+  public steps: Step[] = [];
 
   constructor(private router: Router,
     private playerService: PlayerService,
     private gameService: GameService,
     public matDialog: MatDialog) {
       this.players.forEach(el => {
-        const name = el.name;
         this.cards.push(
-          this.getCardFormGroup(name)
+          this.getCardFormGroup(el.name)
         );
       });
       this.gameType = this.gameService.gameType;
@@ -57,7 +54,7 @@ export class GameComponent {
     return new FormGroup({
       point: new FormControl(1, [
         Validators.required,
-        Validators.min(1),
+        Validators.min(0),
         Validators.max(20),
         Validators.pattern("^[0-9]*$")
       ]),
@@ -126,26 +123,23 @@ export class GameComponent {
 
       if (arrPointStep.length === 0) {
         arrPointStep.push(pointStep);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointStep < 301) {
         arrPointStep.push(last + pointStep);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointStep > 301) {
         arrPointStep.push(last);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last + pointStep === 301) {
         arrPointStep.push(last + pointStep);
-        this.resultMessage = this.gameService.players[i].name;
-        this.showResult();
+        this.showResult(this.gameService.players[i].name);
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
     }
 
     this.steps.push(step);
+    this.showLeader(this.gameType);
   }
 
   countPoint501() {
@@ -163,35 +157,32 @@ export class GameComponent {
         
       if (arrPointStep.length === 0) {
         arrPointStep.push(501 - pointStep);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointStep > 0) {
         arrPointStep.push(last - pointStep);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointStep < 0) {
         arrPointStep.push(last);
-        this.showLeader(this.gameService.gameType);
       }
       else if (last - pointStep === 0) {
         arrPointStep.push(last - pointStep);
-        this.resultMessage = this.gameService.players[i].name;
-        this.showResult();
+        this.showResult(this.gameService.players[i].name);
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
     }
 
     this.steps.push(step);
+    this.showLeader(this.gameType);
   }
 
-  showResult() {
+  showResult(winner: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "show-result";
     dialogConfig.height = "window.screen.height";
     dialogConfig.width = "window.screen.height";
-    dialogConfig.data = this.resultMessage;
+    dialogConfig.data = winner;
     const modalDialog = this.matDialog.open(GameResultComponent, dialogConfig);
     modalDialog.afterClosed().subscribe(result => {
       if (result === 'restart'){

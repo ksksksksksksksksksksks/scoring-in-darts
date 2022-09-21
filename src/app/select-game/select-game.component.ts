@@ -14,13 +14,11 @@ type GameType = "501" | "301";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectGameComponent implements OnInit {
-
-  @Input() public gameType!: GameType;
+  
   @ViewChild(AddPlayerComponent) child!: AddPlayerComponent;
-
-  player!: Player;
-  players: Player[] = this.playerService.players;
-  strInput: string = '';
+  public gameType!: GameType;
+  public players: Player[] = this.playerService.players;
+  public strInput: string = '';
 
   constructor(private router: Router, 
     public playerService: PlayerService,
@@ -28,7 +26,7 @@ export class SelectGameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.players = this.playerService.getPlayer();
+    this.players = this.playerService.getPlayers();
   }
 
   removePlayer(player: Player) {

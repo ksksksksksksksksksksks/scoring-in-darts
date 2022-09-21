@@ -8,9 +8,7 @@ import { AppComponent } from './app.component';
 import { SelectGameComponent } from './select-game/select-game.component';
 import { AddPlayerComponent } from './add-player/add-player.component';
 import { GameComponent } from './game/game.component';
-
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { PlayerService } from './player.service';
 import { GameService } from './game.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +36,6 @@ const routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
