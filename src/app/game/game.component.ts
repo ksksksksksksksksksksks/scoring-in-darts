@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/player.service';
 import { GameService } from 'src/app/game.service';
 import { Player } from '../domain/player';
@@ -28,6 +28,7 @@ export class GameComponent {
   public steps: Step[] = [];
 
   constructor(private router: Router,
+    private route: ActivatedRoute,
     private playerService: PlayerService,
     private gameService: GameService,
     public matDialog: MatDialog) {
@@ -36,7 +37,11 @@ export class GameComponent {
           this.getCardFormGroup(el.name)
         );
       });
-      this.gameType = this.gameService.gameType;
+      this.gameType = route.snapshot.params['type'];
+      for (let i = 0; i < this.players.length; i++) {
+        this.players[i].pointStep = [];
+        this.playerService.players[i].leader = false;
+      } 
   }
 
   private getCardFormGroup(name: string): FormGroup {

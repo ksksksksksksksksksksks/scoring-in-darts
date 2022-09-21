@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <button class="start" (click)="start()" [disabled]="!gameType || this.playerService.players.length < 2" 
+  <button class="start" (click)="start()"  
     [class.active]="gameType && this.playerService.players.length >= 2">
     Start
   </button>

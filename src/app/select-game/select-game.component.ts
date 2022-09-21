@@ -39,15 +39,10 @@ export class SelectGameComponent implements OnInit {
 
   chooseGame(typeGame: GameType) {
     this.gameType = typeGame;
-    this.gameService.gameType = typeGame;
   }
 
   start() {
-    this.router.navigateByUrl('game');
-    for (let i = 0; i < this.players.length; i++) {
-      this.players[i].pointStep = [];
-      this.playerService.players[i].leader = false;
-    }  
+    this.gameType === "301" ? this.router.navigateByUrl('game/301') : this.router.navigateByUrl('game/501'); 
   }
 }
 

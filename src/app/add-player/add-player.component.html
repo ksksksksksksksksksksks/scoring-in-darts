@@ -9,12 +9,10 @@
     <p>Add a new player to start the game</p> 
     <div class="form" [formGroup]="form" novalidate>
         <label>Nickname</label>
-        <input type="text" formControlName="name" 
-            [class.invalid]="form.controls['name'].invalid && form.controls['name'].touched" />
+        <input type="text" formControlName="name" />
         <label>e-mail</label>
-        <input type="text" formControlName="email" 
-            [class.invalid]="form.controls['email'].invalid && form.controls['email'].touched" />
-        <button [disabled]="form.invalid" (click)="addPlayer()" [class.active]="!form.invalid">
+        <input type="text" formControlName="email" />
+        <button [disabled]="form.invalid" (click)="addPlayer()" [class.disable]="form.invalid && form.touched">
             Add
         </button>
     </div>

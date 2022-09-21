@@ -16,7 +16,7 @@
     
         p {
             line-height: 0.9;
-            
+
             .logo-points {
                 font-weight: bold; 
                 font-size: 52px;
@@ -129,7 +129,7 @@
                 background: rgb(77, 77, 77);
             }
             
-            .invalid {
+            .ng-invalid.ng-touched {
                 border: 2px solid red;
             }
         }
