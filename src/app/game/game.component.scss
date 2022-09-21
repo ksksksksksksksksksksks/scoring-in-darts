@@ -16,19 +16,19 @@
     
         p {
             line-height: 0.9;
-        }
-
-        .logo-points {
-            font-weight: bold; 
-            font-size: 52px;
-        }
-        
-        .logo-edition {
-            text-transform: none;
-            font-size: 11.5px;
-            display: block;
-            padding-top: 5px;
-            text-align: right;
+            
+            .logo-points {
+                font-weight: bold; 
+                font-size: 52px;
+            }
+            
+            .logo-edition {
+                text-transform: none;
+                font-size: 11.5px;
+                display: block;
+                padding-top: 5px;
+                text-align: right;
+            }
         }
     }
     
@@ -80,13 +80,14 @@
                 width: 70px;
                 height: 20px;
                 border: 2px solid white;
-                border-radius: 2px;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
                 margin-bottom: 4px;
             }
     
             .check {
                 color: rgb(77, 77, 77);
-                height: 22px;
+                height: 21px;
                 width: 25px;
                 display: inline-block;
                 padding: 1px;
@@ -96,6 +97,7 @@
                 cursor: pointer;
                 border: 1.8px solid rgb(77, 77, 77);
                 user-select: none;
+                vertical-align: top;
             }
             
             .check:hover {
@@ -157,46 +159,49 @@
     }
 }
 
-    .step-point {
-        width: 70%;
-        margin: 40px auto 100px auto;
-        vertical-align: top;
+.step-point {
+    width: 70%;
+    margin: 40px auto 100px auto;
     
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            color: rgb(77, 77, 77);
-            text-align: center;
-            background: #ffffff;
-            font-size: 16px;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: rgb(77, 77, 77);
+        text-align: center;
+        background: #ffffff;
+        font-size: 16px;
             
-            th {
-                background: #039be6;
-                color: #ffffff;
-                font-weight: 400;
-                padding-bottom: 5px;
+        th {
+            background: #039be6;
+            color: #ffffff;
+            font-weight: 400;
+            padding-bottom: 5px;
         
-                div {
-                    background: url('https://raw.githubusercontent.com/sumarenko/scoring-in-darts/main/src/assets/icon.png') no-repeat;
-                    width: 22px;
-                    height: 22px;
-                    display: inline-block;
-                    background-size: contain;
-                    margin: 0;
-                }
-            }
-        
-            td {
-                height: 40px;
-                border-bottom: 2px solid #039be6;
-            }
-
-            .step-num {
-                background: #039be6;
-                color: #ffffff;
+            div {
+                background: url('https://raw.githubusercontent.com/sumarenko/scoring-in-darts/main/src/assets/icon.png') no-repeat;
                 width: 20px;
-                padding-right: 15px;
-                text-align: right;
+                height: 20px;
+                display: inline-block;
+                background-size: contain;
+                margin: 0 0 -3px 0;
+            }
+        }
+        
+        td {
+            height: 40px;
+            border-bottom: 2px solid #039be6;
+        }
+
+        .step-num {
+            background: #039be6;
+            color: #ffffff;
+            width: 20px;
+            padding-right: 15px;
+            text-align: right;
+        }
+
+        .initial-point {
+            color:rgb(175, 173, 173)
         }
     }
 }

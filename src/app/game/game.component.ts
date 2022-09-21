@@ -143,11 +143,9 @@ export class GameComponent {
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
-      // console.log(this.gameService.players[i]);
     }
 
     this.steps.push(step);
-    // console.log(this.steps);
   }
 
   countPoint501() {
@@ -182,11 +180,9 @@ export class GameComponent {
       }
 
       step[this.cards.value[i]!.name as string] = arrPointStep[arrPointStep.length - 1];
-      // console.log(this.gameService.players[i]);
     }
 
     this.steps.push(step);
-    // console.log(this.steps);
   }
 
   showResult() {

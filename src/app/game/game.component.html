@@ -68,5 +68,11 @@
                 {{step[player.name]}}
             </td>
         </tr>
+        <tr *ngIf="gameType === '501'" class="initial-point">
+            <td class="step-num"></td>
+            <td *ngFor="let player of players">
+                501
+            </td>
+        </tr>
     </table>
 </div>
