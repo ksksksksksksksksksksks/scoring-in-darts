@@ -31,16 +31,12 @@ export class SelectGameComponent implements OnInit {
     this.playerService.removePlayer(player);
   }
 
-  addPlayer() {
-    this.router.navigateByUrl('add-player');
-  }
-
   chooseGame(typeGame: GameType) {
     this.gameType = typeGame;
   }
 
-  start() {
-    this.gameType === "301" ? this.router.navigateByUrl('game/301') : this.router.navigateByUrl('game/501');
+  start() : void {
+    this.router.navigateByUrl(`game/${this.gameType}`);
   }
 }
 

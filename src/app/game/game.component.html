@@ -18,14 +18,8 @@
                 <div formArrayName="points">
                     <div *ngFor="let _ of card.controls.points.controls; let i = index">
                         <ng-container [formGroupName]="i">
-                            <div *ngIf="j === 0 && i===0" class="dart">
-                                Dart 1
-                            </div>  
-                            <div *ngIf="j === 0 && i===1" class="dart">
-                                Dart 2
-                            </div>
-                            <div *ngIf="j === 0 && i===2" class="dart">
-                                Dart 3
+                            <div *ngIf="j === 0" class="dart">
+                                Dart {{i + 1}}
                             </div>
                             <input class="point" formControlName="point" 
                                 [class.invalid]="card.controls.points.controls[i].invalid && 

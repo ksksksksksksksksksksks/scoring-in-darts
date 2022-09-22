@@ -72,14 +72,20 @@
             }
         }
     
-        button {
+        a {
+            display: inline-block;
             background-color: #ffd727;
             border: none;
-            height: 32px;
+            height: 27px;
             width: 400px;
             border-radius: 2px;
             color: rgb(77, 77, 77);
             font-size: 16px;
+            text-align: center;
+            vertical-align: top;
+            text-decoration: none;
+            cursor: auto;
+            padding-top: 5px;
         }
     
         .name {
@@ -124,8 +130,14 @@
             font-size: 22px;
             margin-bottom: 15px;
         }
-    
-        .game-501, .game-301 {
+
+        .button-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .game-button {
             border-radius: 50%;
             height: 80px;
             width: 80px;
@@ -137,20 +149,10 @@
             color: #4d5061;
             font-size: 26px;
             font-weight: bold;
-            cursor: pointer;    
+            cursor: pointer;
         }
-    
-        .game-501 {
-            float: left;
-            margin-right: 20px;
-        }
-    
-        .game-501:hover, .game-301:hover {
-            background: #09497e;
-            color: #ffffff;
-        }
-    
-        .choose-game-before {
+
+        .game-button-after {
             background: #09497e;
             color: #ffffff;
         }
